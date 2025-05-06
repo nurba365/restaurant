@@ -1,21 +1,18 @@
-/* Сброс стилей для всего */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-}
-
-/* Общие стили для тела */
-body {
+  }
+  
+  body {
     background-color: #f8f8f8;
     color: #333;
     line-height: 1.6;
     padding: 40px 20px;
-}
-
-/* Контейнер для контента */
-.container {
+  }
+  
+  .container {
     max-width: 900px;
     margin: 0 auto;
     background-color: #fff;
@@ -23,37 +20,34 @@ body {
     border-radius: 12px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.6s ease-out;
-}
-
-/* Header */
-header {
+  }
+  
+  header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
     font-size: 1.2rem;
-}
-
-header a {
+  }
+  
+  header a {
     color: #333;
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
-}
-
-header a:hover {
+  }
+  
+  header a:hover {
     color: #ff6f61;
-}
-
-/* Основной заголовок */
-h1, h2 {
+  }
+  
+  h1, h2 {
     color: #333;
     font-weight: 700;
     line-height: 1.4;
-}
-
-/* Hero Section */
-.hero {
+  }
+  
+  .hero {
     background-color: #ff6f61;
     color: white;
     text-align: center;
@@ -62,20 +56,19 @@ h1, h2 {
     margin-top: 40px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.6s ease-out;
-}
-
-.hero h2 {
+  }
+  
+  .hero h2 {
     font-size: 2.2rem;
     font-weight: 600;
-}
-
-.hero p {
+  }
+  
+  .hero p {
     font-size: 1.2rem;
     margin-top: 10px;
-}
-
-/* Стили для кнопок */
-button, .btn {
+  }
+  
+  button, .btn {
     padding: 12px 24px;
     background-color: #ff6f61;
     color: white;
@@ -86,111 +79,112 @@ button, .btn {
     width: 100%;
     font-size: 1rem;
     font-weight: bold;
-}
-
-button:hover, .btn:hover {
+  }
+  
+  button:hover, .btn:hover {
     background-color: #e14b3a;
-}
-
-/* Стили для ввода в формах */
-input[type="text"], input[type="number"], input[type="password"], input[type="email"], input[type="date"], input[type="time"] {
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="password"],
+  input[type="email"],
+  input[type="date"],
+  input[type="time"],
+  input[type="datetime-local"] {
     width: 100%;
     padding: 14px;
     border: 1px solid #ddd;
     border-radius: 6px;
-    box-sizing: border-box;
-    margin-bottom: 20px;
     font-size: 1rem;
+    margin-bottom: 20px;
     transition: border-color 0.3s ease;
-}
-
-input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="date"]:focus, input[type="time"]:focus {
+  }
+  
+  input:focus {
     border-color: #ff6f61;
     outline: none;
-}
-
-/* Список ресторанов */
-/* Стили для списка ресторанов и товаров */
-#restaurant-list, #products {
+    background-color: #fff;
+  }
+  
+  input:invalid {
+    border-color: #d32f2f;
+  }
+  
+  #restaurant-list, #products {
     list-style-type: none;
     padding: 0;
-}
-
-.restaurant-item, .product-item {
+  }
+  
+  .restaurant-item, .product-item {
     padding: 18px;
     margin: 12px 0;
-    background-color: #f9f9f9; /* светлый фон для легкости */
-    border-radius: 12px; /* более округлые углы */
+    background-color: #f9f9f9;
+    border-radius: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.restaurant-item:hover, .product-item:hover {
+  }
+  
+  .restaurant-item:hover, .product-item:hover {
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-    transform: translateY(-8px); /* добавлен эффект подъема */
-}
-
-/* Данные ресторана и товара */
-.restaurant-details, .product-details {
+    transform: translateY(-8px);
+  }
+  
+  .restaurant-details, .product-details {
     flex: 1;
     margin-right: 20px;
-}
-
-/* Кнопки действий */
-.restaurant-actions button, .product-actions button {
+  }
+  
+  .restaurant-actions button, .product-actions button {
     padding: 10px 18px;
-    background-color: #6C63FF; /* нежный фиолетовый */
+    background-color: #6C63FF;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.restaurant-actions button:hover, .product-actions button:hover {
-    background-color: #5a54d8; /* чуть более темный оттенок фиолетового */
-}
-
-/* Кнопки для удаления */
-.restaurant-actions button.delete, .product-actions button.delete {
-    background-color: #FF7043; /* теплый оранжево-красный */
-}
-
-.restaurant-actions button.delete:hover, .product-actions button.delete:hover {
-    background-color: #FF5722; /* более насыщенный оранжевый */
-}
-
-/* Сообщения об ошибках и успехах */
-#message, #error-message, .message.success, .message.error {
+  }
+  
+  .restaurant-actions button:hover, .product-actions button:hover {
+    background-color: #5a54d8;
+  }
+  
+  .restaurant-actions button.delete, .product-actions button.delete {
+    background-color: #FF7043;
+  }
+  
+  .restaurant-actions button.delete:hover, .product-actions button.delete:hover {
+    background-color: #FF5722;
+  }
+  
+  #message, #error-message, .message.success, .message.error {
     padding: 18px;
     border-radius: 12px;
     font-weight: bold;
     margin-top: 20px;
-}
-
-.message.success {
-    background-color: #e8f5e9; /* светло-зеленый фон для успеха */
-    color: #388e3c; /* темно-зеленый текст */
-}
-
-.message.error {
-    background-color: #ffebee; /* светло-красный фон для ошибки */
-    color: #d32f2f; /* ярко-красный текст */
-}
-
-/* Стили для навигации */
-/* Поисковая панель */
-.search-bar {
+  }
+  
+  .message.success {
+    background-color: #e8f5e9;
+    color: #388e3c;
+  }
+  
+  .message.error {
+    background-color: #ffebee;
+    color: #d32f2f;
+  }
+  
+  .search-bar {
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
     animation: fadeIn 0.6s ease-out;
-}
-
-.search-input {
+  }
+  
+  .search-input {
     position: relative;
     width: 100%;
     max-width: 500px;
@@ -198,9 +192,9 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
     border-radius: 30px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-}
-
-.search-icon {
+  }
+  
+  .search-icon {
     position: absolute;
     top: 50%;
     left: 16px;
@@ -208,35 +202,35 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
     fill: #4e5d6c;
     width: 24px;
     height: 24px;
-}
-
-.search-input input {
+  }
+  
+  .search-input input {
     width: 100%;
-    padding: 12px 50px 12px 40px; /* Добавлен отступ для иконки */
+    padding: 12px 50px 12px 40px;
     border: 1px solid #ddd;
     border-radius: 30px;
     font-size: 1rem;
     background-color: #f9f9f9;
     color: #333;
     transition: all 0.3s ease;
-}
-
-.search-input input:focus {
+  }
+  
+  .search-input input:focus {
     border-color: #f4a300;
     outline: none;
     background-color: #fff;
-}
-
-.search-input input::placeholder {
+  }
+  
+  .search-input input::placeholder {
     color: #aaa;
     font-style: italic;
-}
-
-/* Навигация */
-.navbar {
+  }
+  
+  /* НАВБАР */
+  .navbar {
     background: #ffffff;
     padding: 16px 32px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
     position: sticky;
     top: 0;
     z-index: 999;
@@ -251,9 +245,9 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
   }
   
   .navbar-brand a {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1a1a1a;
     text-decoration: none;
     transition: color 0.3s ease;
   }
@@ -266,128 +260,142 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
     display: none;
     background: none;
     border: none;
+    font-size: 1.6rem;
+    color: #1a1a1a;
     cursor: pointer;
-    color: #333;
   }
   
   .navbar-links {
     display: flex;
-    gap: 20px;
+    align-items: center;
+    gap: 24px;
   }
   
   .navbar-link {
-    text-decoration: none;
+    font-size: 1rem;
     font-weight: 500;
     color: #444;
-    padding: 8px 12px;
-    border-radius: 8px;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 10px;
     transition: all 0.3s ease;
   }
   
   .navbar-link:hover {
-    background-color: #f4f4f4;
+    background-color: #f2f2f2;
     color: #ff6f61;
   }
   
   .navbar-link.logout {
     background-color: #ff6f61;
-    color: white;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
   }
   
   .navbar-link.logout:hover {
     background-color: #e14b3a;
   }
   
-  /* Mobile Responsive */
+  /* Моб адаптация */
   @media (max-width: 768px) {
     .menu-toggle {
       display: block;
     }
-  
     .navbar-links {
       display: none;
-      flex-direction: column;
-      background: white;
       position: absolute;
-      top: 70px;
+      top: 72px;
       right: 32px;
+      background-color: #fff;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+      flex-direction: column;
       padding: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
-      min-width: 200px;
+      gap: 16px;
+      min-width: 220px;
     }
-  
     .navbar-links.open {
       display: flex;
     }
-  
     .navbar-link {
-      margin-bottom: 10px;
+      margin: 0;
+      width: 100%;
+      text-align: left;
     }
   }
   
-
-/* Стили для формы авторизации */
-.auth-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 30px;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  .auth-container {
+    max-width: 420px;
+    margin: 40px auto;
+    padding: 40px 32px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
     text-align: center;
-}
-
-.auth-header {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 30px;
-}
-
-.auth-form {
+  }
+  
+  .auth-header {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1f1f1f;
+    margin-bottom: 28px;
+    letter-spacing: -0.5px;
+  }
+  
+  .auth-form {
     display: flex;
     flex-direction: column;
-}
-
-.auth-form .form-group {
-    margin-bottom: 20px;
-}
-
-.auth-form .form-group input {
-    margin-bottom: 15px;
-    padding: 12px;
-    font-size: 16px;
+    gap: 20px;
+  }
+  
+  .auth-form .form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .auth-form .form-group input {
+    padding: 14px 16px;
+    font-size: 15px;
     border: 1px solid #ddd;
-    border-radius: 6px;
-    transition: border-color 0.3s ease-in-out;
-}
-
-.auth-form .form-group input:focus {
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+  }
+  
+  .auth-form .form-group input:focus {
     border-color: #ff6f61;
+    box-shadow: 0 0 0 3px rgba(255, 111, 97, 0.2);
+    background-color: #fff;
     outline: none;
-}
-
-.auth-form button {
-    padding: 14px;
+  }
+  
+  .auth-form button {
+    padding: 14px 18px;
     background-color: #ff6f61;
-    color: white;
+    color: #fff;
     font-size: 16px;
+    font-weight: 600;
     border: none;
-    border-radius: 6px;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.auth-form button:hover {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .auth-form button:hover {
     background-color: #e14b3a;
-}
-
-/* Анимация появления */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-.card {
+    transform: translateY(-2px);
+  }
+  
+  .auth-form button:active {
+    transform: scale(0.98);
+  }
+  
+  /* Card */
+  .card {
     background-color: #ffffff;
     border-radius: 20px;
     overflow: hidden;
@@ -398,7 +406,6 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
     max-width: 300px;
     margin: 0 auto;
   }
-  
   .card:hover {
     transform: translateY(-10px);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
@@ -406,75 +413,141 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:foc
   .card-content {
     padding: 20px;
   }
-  
   .card-title {
     font-size: 1.4rem;
     color: #333;
     margin-bottom: 5px;
   }
-  
   .card-sub {
     font-size: 0.95rem;
     color: #777;
     margin-bottom: 10px;
   }
-  
   .card-rating {
     font-size: 1.1rem;
     font-weight: bold;
     color: #f4a300;
     margin-bottom: 15px;
   }
+  
   .card-links {
     display: flex;
     justify-content: space-between;
-    gap: 8px;
+    gap: 10px;
+    margin-top: 10px;
   }
-  
   .card-link {
     flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     background-color: #ff6f61;
     color: white;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 12px 0;
+    border-radius: 10px;
     text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    min-height: 44px;
+    white-space: nowrap;
   }
-  
   .card-link:hover {
     background-color: #e14b3a;
+    transform: translateY(-1px);
   }
+  
   .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 20px;
+    gap: 32px;
+    margin-top: 40px;
+    padding: 0 16px;
+    align-items: stretch;
+    transition: all 0.3s ease;
   }
-  .form-card {
+  
+  /* Reservation */
+  .reservation-section {
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .reservation-card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+  }
+  .reservation-title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  .reservation-subtitle {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 30px;
+  }
+  .reservation-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-    animation: fadeIn 0.6s ease;
+    gap: 20px;
   }
-  
-  .form-card label {
-    font-weight: bold;
-    margin-bottom: 4px;
-    color: #444;
+  .reservation-form .form-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
   }
-  
-  input[type="datetime-local"] {
+  .reservation-form input,
+  .reservation-form select,
+  .reservation-form textarea {
+    flex: 1;
     padding: 14px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 1rem;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+  .reservation-form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  .reservation-form input:focus,
+  .reservation-form select:focus,
+  .reservation-form textarea:focus {
+    border-color: #ff6f61;
+    outline: none;
+  }
+  .reservation-btn {
+    padding: 16px;
+    font-size: 16px;
+    background-color: #a1543f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .reservation-btn:hover {
+    background-color: #833e2c;
   }
   
-  input:invalid {
-    border-color: #d32f2f;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   

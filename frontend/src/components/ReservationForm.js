@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 
 export default function ReservationForm() {
-  const [formData, setFormData] = useState({ name: '', date: '', guests: 1 });
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    guests: '1',
+    date: '',
+    time: '',
+    message: '',
+  });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -9,24 +16,79 @@ export default function ReservationForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Reservation for ${formData.name} on ${formData.date} for ${formData.guests} guests!`);
+    alert(`Reservation for ${formData.name}, ${formData.guests} guests on ${formData.date} at ${formData.time}`);
   };
 
   return (
-    <div className="container">
-      <h2>Make a Reservation</h2>
-      <form onSubmit={handleSubmit} className="form-card">
-        <label htmlFor="name">Name</label>
-        <input name="name" type="text" placeholder="Enter your name" value={formData.name} onChange={handleChange} required />
+    <section className="reservation-section">
+      <div className="reservation-card">
+        <h2 className="reservation-title">Online Reservation</h2>
+        <p className="reservation-subtitle">
+          Booking request: +44 (800) 1433 555 or fill out the form
+        </p>
 
-        <label htmlFor="date">Date & Time</label>
-        <input name="date" type="datetime-local" value={formData.date} onChange={handleChange} required />
+        <form onSubmit={handleSubmit} className="reservation-form">
+          <div className="form-row">
+            <input
+              name="name"
+              type="text"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+            <input
+              name="phone"
+              type="tel"
+              placeholder="Phone Number"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <label htmlFor="guests">Guests</label>
-        <input name="guests" type="number" min="1" value={formData.guests} onChange={handleChange} required />
+          <div className="form-row">
+            <select
+              name="guests"
+              value={formData.guests}
+              onChange={handleChange}
+              required
+            >
+              <option value="1">1 Person</option>
+              <option value="2">2 People</option>
+              <option value="3">3 People</option>
+              <option value="4">4 People</option>
+              <option value="5+">5+ People</option>
+            </select>
 
-        <button type="submit" className="btn">Reserve</button>
-      </form>
-    </div>
+            <input
+              name="date"
+              type="date"
+              value={formData.date}
+              onChange={handleChange}
+              required
+            />
+            <input
+              name="time"
+              type="time"
+              value={formData.time}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <textarea
+            name="message"
+            placeholder="Message (Optional)"
+            value={formData.message}
+            onChange={handleChange}
+          />
+
+          <button type="submit" className="reservation-btn">
+            BOOK A TABLE
+          </button>
+        </form>
+      </div>
+    </section>
   );
 }
