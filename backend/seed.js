@@ -31,5 +31,4 @@ const seedAdmin = async () => {
     }
 };
 
-// 🔥 Вызов функции
 seedAdmin();

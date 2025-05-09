@@ -1,8 +1,6 @@
-// middleware/auth.js
 import jwt from "jsonwebtoken";
 import RevokedToken from "../models/revokedTokens.js";
 
-// Middleware для проверки авторизации
 export const authenticateToken = async (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
@@ -10,13 +8,11 @@ export const authenticateToken = async (req, res, next) => {
   if (!token) return res.sendStatus(401);
 
   try {
-    // Проверка, отозван ли токен
     const revoked = await RevokedToken.exists({ token });
     if (revoked) {
       return res.status(401).json({ success: false, message: 'Token revoked' });
     }
 
-    // Проверка JWT
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
       if (err) return res.status(403).json({ success: false, message: 'Invalid token' });
       req.user = user;
@@ -29,7 +25,6 @@ export const authenticateToken = async (req, res, next) => {
   }
 };
 
-// Middleware только для админов
 export const adminOnly = (req, res, next) => {
   if (req.user && req.user.role !== 'admin') {
     return res.status(403).json({ success: false, message: 'Admin access required' });

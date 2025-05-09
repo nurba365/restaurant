@@ -1,15 +1,10 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
-// Схема пользователя
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  role: { 
-    type: String, 
-    enum: ['admin', 'user'], 
-    default: "user" 
-  }
+  role: { type: String, enum: ['admin', 'user'], default: "user" }
 });
 
 userSchema.pre("save", async function (next) {
@@ -23,11 +18,8 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-// ✅ Метод для сравнения паролей
 userSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
 
-// Экспорт модели пользователя
-const User = mongoose.model("User", userSchema);
-export default User;
+export default mongoose.model("User", userSchema);

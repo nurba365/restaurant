@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react'; // иконки
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import { AuthContext } from '../contexts/AuthContext';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-brand">
-          <Link to="/">🍽️ Restaurant Reviews</Link>
+          <Link to="/home">🍽️ Restaurant Reviews</Link>
         </div>
 
         <button className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>
@@ -21,9 +29,11 @@ export default function Navbar() {
           <Link to="/restaurants" className="navbar-link">Restaurants</Link>
           <Link to="/reservation" className="navbar-link">Reservation</Link>
           <Link to="/profile" className="navbar-link">Profile</Link>
-          <Link to="/products" className="navbar-link">Products</Link>
-          <Link to="/productform" className="navbar-link">Product Form</Link>
-          <Link to="/login" className="navbar-link logout">Logout</Link>
+          {isAuthenticated ? (
+            <button onClick={handleLogout} className="navbar-link logout">Logout</button>
+          ) : (
+            <Link to="/login" className="navbar-link">Login</Link>
+          )}
         </div>
       </div>
     </nav>

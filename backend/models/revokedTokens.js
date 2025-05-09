@@ -7,6 +7,4 @@ const revokedTokenSchema = new mongoose.Schema({
 
 revokedTokenSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 });
 
-// Экспорт по умолчанию
-const RevokedToken = mongoose.model('RevokedToken', revokedTokenSchema);
-export default RevokedToken;
+export default mongoose.model('RevokedToken', revokedTokenSchema);

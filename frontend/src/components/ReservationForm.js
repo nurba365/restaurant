@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import API_BASE_URL from '../config';
 
 export default function ReservationForm() {
+  const [params] = useSearchParams();
+  const restaurantId = params.get('restaurant');
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -10,85 +15,84 @@ export default function ReservationForm() {
     message: '',
   });
 
+  const [successMsg, setSuccessMsg] = useState('');
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Reservation for ${formData.name}, ${formData.guests} guests on ${formData.date} at ${formData.time}`);
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/reservations`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, restaurantId }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSuccessMsg('Бронирование успешно отправлено!');
+      } else {
+        setSuccessMsg('Ошибка при бронировании.');
+      }
+    } catch {
+      setSuccessMsg('Ошибка сервера. Попробуйте снова.');
+    }
   };
 
   return (
-    <section className="reservation-section">
-      <div className="reservation-card">
-        <h2 className="reservation-title">Online Reservation</h2>
-        <p className="reservation-subtitle">
-          Booking request: +44 (800) 1433 555 or fill out the form
-        </p>
-
-        <form onSubmit={handleSubmit} className="reservation-form">
-          <div className="form-row">
-            <input
-              name="name"
-              type="text"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-            <input
-              name="phone"
-              type="tel"
-              placeholder="Phone Number"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="form-row">
-            <select
-              name="guests"
-              value={formData.guests}
-              onChange={handleChange}
-              required
-            >
-              <option value="1">1 Person</option>
-              <option value="2">2 People</option>
-              <option value="3">3 People</option>
-              <option value="4">4 People</option>
-              <option value="5+">5+ People</option>
-            </select>
-
-            <input
-              name="date"
-              type="date"
-              value={formData.date}
-              onChange={handleChange}
-              required
-            />
-            <input
-              name="time"
-              type="time"
-              value={formData.time}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
+    <div className="container">
+      <h2 className="login-title">📅 Бронирование стола</h2>
+      {successMsg && <div className="message success">{successMsg}</div>}
+      <form onSubmit={handleSubmit} className="reservation-form">
+        <div className="form-group">
+          <label>Ваше имя:</label>
+          <input
+            name="name"
+            type="text"
+            placeholder="Имя"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Телефон:</label>
+          <input
+            name="phone"
+            type="tel"
+            placeholder="+7..."
+            value={formData.phone}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Количество гостей:</label>
+          <select name="guests" value={formData.guests} onChange={handleChange} required>
+            <option value="1">1 гость</option>
+            <option value="2">2 гостя</option>
+            <option value="3">3 гостя</option>
+            <option value="4">4 гостя</option>
+            <option value="5+">5+ гостей</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label>Дата и время:</label>
+          <input type="date" name="date" value={formData.date} onChange={handleChange} required />
+          <input type="time" name="time" value={formData.time} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
+          <label>Комментарий:</label>
           <textarea
             name="message"
-            placeholder="Message (Optional)"
+            placeholder="Дополнительная информация (необязательно)"
             value={formData.message}
             onChange={handleChange}
           />
-
-          <button type="submit" className="reservation-btn">
-            BOOK A TABLE
-          </button>
-        </form>
-      </div>
-    </section>
+        </div>
+        <button type="submit" className="btn">Забронировать</button>
+      </form>
+    </div>
   );
 }

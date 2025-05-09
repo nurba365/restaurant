@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
-import '../style.css';
 import API_BASE_URL from '../config';
+import '../style.css';
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -14,19 +14,17 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await fetch(`${API_BASE_URL}/login`, {
+      const response = await fetch(`${API_BASE_URL}/api/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       });
 
       const data = await response.json();
-
       if (data.success) {
         login(data.token, username);
-        navigate('/products');
+        navigate('/home');
       } else {
         setMessage(data.message);
         setMessageType('error');
@@ -38,35 +36,39 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Login</h1>
-      {message && <div className={`message ${messageType}`}>{message}</div>}
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            placeholder="Enter your username"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            placeholder="Enter your password"
-          />
-        </div>
-        <button type="submit" className="btn">Login</button>
-      </form>
-      <a href="/register">Don't have an account? Register here</a>
+    <div className="login-wrapper">
+      <div className="login-card">
+        <h2 className="login-title">🔐 Кіру</h2>
+        {message && <div className={`message ${messageType}`}>{message}</div>}
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="form-group">
+            <label htmlFor="username">Логин:</label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              placeholder="Логинді енгізіңіз"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Құпиясөз:</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Құпиясөзді енгізіңіз"
+            />
+          </div>
+          <button type="submit" className="btn">Кіру</button>
+        </form>
+        <p className="login-bottom">
+          Аккаунтыңыз жоқ па? <a href="/register">Тіркеліңіз</a>
+        </p>
+      </div>
     </div>
   );
 };

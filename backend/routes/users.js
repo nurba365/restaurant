@@ -7,7 +7,6 @@ import { authenticateToken, adminOnly } from "../middleware/auth.js";
 
 const router = express.Router();
 
-// 🔐 Вход (логин)
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -19,10 +18,7 @@ router.post('/login', async (req, res) => {
     }
 
     const token = jwt.sign(
-      {
-        userId: user._id,
-        role: user.role,
-      },
+      { id: user._id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
@@ -34,7 +30,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// 🚪 Выход (logout)
 router.post('/logout', async (req, res) => {
   const token = req.headers['authorization']?.split(' ')[1];
 
@@ -58,7 +53,6 @@ router.post('/logout', async (req, res) => {
   }
 });
 
-// 🔒 Пример защищённого маршрута (только для админа)
 router.get('/admin', authenticateToken, adminOnly, (req, res) => {
   res.json({ success: true, message: 'Welcome to admin panel' });
 });
