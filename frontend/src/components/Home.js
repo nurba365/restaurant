@@ -1,40 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import '../style-home.css';
-
-const mockRestaurants = [
-  {
-    _id: "1",
-    name: "Gusto Italiano",
-    cuisine: "Итальянская",
-    rating: 4.8,
-    image: "/images/italian.jpg",
-    location: "ул. Солнечная, 12",
-  },
-  {
-    _id: "2",
-    name: "Sushi Master",
-    cuisine: "Японская",
-    rating: 4.6,
-    image: "/images/sushi.jpg",
-    location: "пр-т Мира, 45",
-  },
-  {
-    _id: "3",
-    name: "Борщ и Шашлык",
-    cuisine: "Русская/Грузинская",
-    rating: 4.7,
-    image: "/images/borsh.jpg",
-    location: "ул. Победы, 33",
-  },
-];
+import API_BASE_URL from '../config';
 
 export default function Home() {
   const [query, setQuery] = useState("");
   const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
-    setRestaurants(mockRestaurants);
+    const fetchRestaurants = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/restaurants`);
+        const data = await res.json();
+
+        // Кей ресторандарда image мен location жоқ болса, бос мән беріп жібереміз
+        const formatted = data.map(r => ({
+          ...r,
+          image: r.image || "/images/default.jpg", // default сурет
+          location: r.address || "Неизвестный адрес",
+          rating: r.rating || 4.5 // default рейтинг
+        }));
+
+        setRestaurants(formatted);
+      } catch (err) {
+        console.error("Ошибка загрузки ресторанов:", err);
+      }
+    };
+
+    fetchRestaurants();
   }, []);
 
   const filtered = restaurants.filter((r) =>
@@ -46,19 +39,24 @@ export default function Home() {
 
   return (
     <div className="home-container">
-      <section className="home-hero">
-        <h1 className="hero-title">🍽️ Добро пожаловать в мир вкуса</h1>
-        <p className="hero-subtitle">
-          Откройте для себя лучшие рестораны вашего города и бронируйте столики за секунды
-        </p>
-        <input
-          type="text"
-          placeholder="Поиск по кухням или названиям..."
-          className="search-input"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-      </section>
+      <section className="bg-gradient-to-r from-pink-400 to-orange-400 text-white py-14 px-6 rounded-3xl shadow-lg mt-5 mb-10">
+  <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-4 flex justify-center items-center gap-2">
+    🍽 Добро пожаловать в мир вкуса
+  </h1>
+  <p className="text-center text-lg md:text-xl mb-6">
+    Откройте для себя лучшие рестораны вашего города и бронируйте столики за секунды
+  </p>
+  <div className="flex justify-center">
+    <input
+      type="text"
+      placeholder="Поиск по кухням или названиям..."
+      className="w-full max-w-md px-5 py-3 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-white shadow-md"
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+    />
+  </div>
+</section>
+
 
       <section className="top-rated-section">
         <h2>🏆 Топ рестораны</h2>

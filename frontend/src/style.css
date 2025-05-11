@@ -5,6 +5,10 @@
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
 
 body {
   background-color: #f9f9f9;
@@ -25,11 +29,11 @@ body {
 /* Заголовки */
 h1, h2 {
   margin-bottom: 16px;
-  color: #222;
+  color: #ffffff;
 }
 
 a {
-  color: #0077cc;
+  color: #b0cbde;
   text-decoration: none;
 }
 a:hover {
@@ -69,43 +73,6 @@ input[type="search"] {
 input:focus {
   border-color: #0077cc;
   outline: none;
-}
-
-/* Navbar */
-.navbar {
-  background-color: white;
-  padding: 16px 32px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  position: sticky;
-  top: 0;
-  z-index: 999;
-}
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.navbar-brand {
-  font-size: 20px;
-  font-weight: bold;
-}
-.navbar-links {
-  display: flex;
-  gap: 16px;
-}
-.navbar-link {
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-.navbar-link:hover {
-  color: #ff6f61;
-}
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
 }
 
 /* Cards */
@@ -176,12 +143,7 @@ input:focus {
 }
 
 /* Footer */
-.footer {
-  text-align: center;
-  padding: 40px 20px;
-  color: #aaa;
-  font-size: 14px;
-}
+
 /* Home-specific styles */
 .home-container {
   padding: 40px 20px;
@@ -192,7 +154,7 @@ input:focus {
   padding: 60px 30px;
   border-radius: 20px;
   text-align: center;
-  color: white;
+  color: rgb(150, 216, 209);
   margin-bottom: 40px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }

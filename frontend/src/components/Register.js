@@ -16,7 +16,8 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${API_BASE_URL}/api/users/register`, {
+      const res = await fetch(`${API_BASE_URL}/api/users/register`,
+        {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
@@ -41,6 +42,7 @@ export default function Register() {
       <div className="login-card">
         <h2 className="login-title">📝 Тіркелу</h2>
         {message && <div className={`message ${messageType}`}>{message}</div>}
+
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
             <label>Логин:</label>

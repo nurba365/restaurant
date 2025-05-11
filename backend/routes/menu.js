@@ -1,15 +1,23 @@
-import express from 'express';
-import {
-  getMenuByRestaurant,
-  createMenuItem,
-  deleteMenuItem,
-} from '../controllers/menuController.js';
-import { authenticateToken, adminOnly } from '../middleware/auth.js';
+import mongoose from 'mongoose';
 
-const router = express.Router();
+router.post('/', async (req, res) => {
+  try {
+    const { restaurantId, name, description, price, category } = req.body;
 
-router.get('/restaurant/:restaurantId', getMenuByRestaurant);
-router.post('/', authenticateToken, adminOnly, createMenuItem);
-router.delete('/:id', authenticateToken, adminOnly, deleteMenuItem);
+    const newItem = new MenuItem({
+      restaurant: new mongoose.Types.ObjectId(restaurantId),
+      name,
+      description,
+      price,
+      category
+    });
 
-export default router;
+    await newItem.save();
+    const populatedItem = await newItem.populate('restaurant', 'name');
+
+    res.status(201).json({ success: true, item: populatedItem });
+  } catch (err) {
+    console.error('Ошибка при добавлении блюда:', err);
+    res.status(500).json({ success: false, message: 'Қате мәзір қосқанда' });
+  }
+});

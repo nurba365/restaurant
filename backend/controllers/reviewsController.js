@@ -1,6 +1,5 @@
-import Review from '../models/Review.js';
+import Review from '../models/review.js';
 
-// Получение отзывов по ресторану
 export const getReviewsByRestaurant = async (req, res) => {
   try {
     const reviews = await Review.find({ restaurant: req.params.restaurantId });
@@ -10,12 +9,11 @@ export const getReviewsByRestaurant = async (req, res) => {
   }
 };
 
-// Создание отзыва
 export const createReview = async (req, res) => {
   try {
     const review = new Review({
       restaurant: req.body.restaurantId,
-      user: req.user.id, // из токена
+      user: req.user.id, 
       text: req.body.text,
     });
 

@@ -5,7 +5,9 @@ import cors from 'cors';
 import userRoutes from './routes/users.js';
 import restaurantRoutes from './routes/restaurants.js';
 import reviewRoutes from './routes/reviews.js';
-import menuRoutes from './routes/menu.js'; // ✅ Импорт — тек қолданар алдында
+import menuRoutes from './routes/menu.js'; 
+import reservationRoutes from './routes/reservations.js';
+
 
 dotenv.config();
 
@@ -16,10 +18,12 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+app.use('/api/restaurants', reviewRoutes);
 app.use('/api/restaurants', restaurantRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/menu', menuRoutes); 
 app.use('/api/users', userRoutes);
+app.use('/api/reservations', reservationRoutes);
 
 // MongoDB connection
 const PORT = process.env.PORT || 5000;
